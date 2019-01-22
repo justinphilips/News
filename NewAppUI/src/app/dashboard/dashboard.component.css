@@ -1,0 +1,9 @@
+.add{
+    float: right;
+}
+/* Changing button color and radius */
+button{
+    background-color: #337ab7;
+    color: white;
+    border-radius: 0.5em
+}

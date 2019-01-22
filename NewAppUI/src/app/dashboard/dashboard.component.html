@@ -1,0 +1,82 @@
+<div>
+    <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+            <!-- Navigation Bar-->
+            <ul class='nav navbar-nav'>
+                <li><a [routerLink]="['/dashboard']">Dashboard</a></li>
+                <li *ngIf="userId != 'admin'"><a [routerLink]="['/watchlist']">Wish List</a></li>
+            </ul>
+            <button   id="logout" style="float:right;margin-top:10px" [routerLink]="['/login']">Log Out</button>
+        </div>
+    </nav>
+    <div class='container'>
+        <router-outlet></router-outlet>
+    </div>
+ </div>
+ 
+
+<div class="panel panel-primary">
+
+  <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body">
+        <!-- Filter Section -->
+        <div class="row">
+            <div class="col-md-2">Filter by Name:</div>
+            <div class="col-md-4"><input id="col-md-4" type='text' [(ngModel)]='listFilter' /></div>
+            <div class="add">
+                <button *ngIf="userId == 'admin'" (click)="redirect()">Add News</button>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"><h3>Filtered by: {{listFilter}} </h3></div>
+        </div>
+        <div class="table-responsive">
+            <table class='table'
+                    *ngIf='news && news.length'>
+                    <!-- Header Section -->
+                <thead>
+                    <tr>
+                        <th>
+                            <button class='btn btn-primary'
+                                (click)='toggleImage()'>
+                                {{showImage ? 'Hide' : 'Show'}} Image
+                            </button>
+                        </th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        
+                        <th>Published Date</th>
+                        <th>Content</th>
+                        
+                    </tr>
+                </thead>
+                <!-- Body Section -->
+                <tbody>
+                    <tr *ngFor='let news of filteredNews; let i = index' [class.active]="i == selectedRow">
+
+                        <td>
+                            <img *ngIf='showImage'
+                                src= '{{ news.imageUrl }}'
+                                [title]='news.title'
+                                [style.width.px]='imageWidth'
+                                [style.margin.px]='imageMargin'>
+                        </td>
+                        <td id="name">    {{ news.title }}
+                        </td>
+                        <td>{{ news.description }}</td>
+                        
+                        <td>{{ news.publishedDate }}</td>
+                        <td>{{news.content}}</td>
+                        
+                
+                      <td *ngIf="userId != 'admin'"> <button  id="recBtn" (click)='recommendNews($event,i,news)'> {{recommendNewsOK(news.newsId)}} </button></td>
+                      <td *ngIf="userId == 'admin'"><button   id="edit" (click)='editnewsredirect($event,i)'>Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

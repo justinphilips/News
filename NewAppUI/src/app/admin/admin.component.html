@@ -1,0 +1,47 @@
+<div class="loginform">
+  <div class="jumbotron">
+<form name="form" (ngSubmit)="f.form.valid && CreateNews()" #f="ngForm" novalidate>	
+
+  <h2>News</h2>
+    <!--Title Input Field-->
+    <div class="form-group"  [ngClass]="{ 'has-error': f.submitted && !title.valid }"> 
+        <h5><label for="title" class="myLabel">Title</label></h5>
+   <input id="form-group" type="text" placeholder="Title" class="form-control" name="title" [(ngModel)]="news.title" #title="ngModel" required >
+   <div *ngIf="f.submitted && !title.valid" class="help-block">Title is required</div> 
+   </div>
+   <!--Description Input Field-->
+   <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !description.valid }">
+      <h5><label for="description" class="myLabel">Description</label></h5>
+    <input id="form-group1" type="text" placeholder="Description"  class="form-control" name="description" [(ngModel)]="news.description" #description="ngModel" required>
+   <div *ngIf="f.submitted && !description.valid" class="help-block">description is required</div>
+   </div>
+   <!--URL Input Field-->
+   <div class="form-group" *ngIf="createNews" [ngClass]="{ 'has-error': f.submitted && !url.valid }">
+      <h5><label for="url" class="myLabel">URL</label></h5>
+    <input id="form-group1" type="text" placeholder="URL"  class="form-control" name="url" [(ngModel)]="news.url" #description="ngModel" required>
+    <div *ngIf="f.submitted && !url.valid" class="help-block">URL is required</div>
+    </div>
+    <!--Image URL Input Field-->
+    <div class="form-group" *ngIf="createNews" [ngClass]="{ 'has-error': f.submitted && !imageUrl.valid }">
+        <h5><label for="imageUrl" class="myLabel">Image URL</label></h5>
+      <input id="form-group1" type="text" placeholder="imageUrl"  class="form-control" name="imageUrl" [(ngModel)]="news.imageUrl" #imageUrl="ngModel" required>
+      <div *ngIf="f.submitted && !imageUrl.valid" class="help-block">imageUrl is required</div>
+      </div>
+      <!--Date Input Field-->
+      <div class="form-group" *ngIf="createNews" [ngClass]="{ 'has-error': f.submitted && !publishedDate.valid }">
+          <h5><label for="publishedDate" class="myLabel">Published Date</label></h5>
+        <input id="form-group1" type="text" placeholder="publishedDate"  class="form-control" name="publishedDate" [(ngModel)]="news.publishedDate" #publishedDate="ngModel" required>
+        <div *ngIf="f.submitted && !publishedDate.valid" class="help-block">publishedDate is required</div>
+        </div>
+        <!--Content Input Field-->
+        <div class="form-group" *ngIf="createNews" [ngClass]="{ 'has-error': f.submitted && !content.valid }">
+            <h5><label for="content" class="myLabel">content</label></h5>
+          <input id="form-group1" type="text" placeholder="content"  class="form-control" name="content" [(ngModel)]="news.content" #content="ngModel" required>
+          <div *ngIf="f.submitted && !content.valid" class="help-block">content is required</div>
+          </div>
+   <button id="jumbotron.btn" class="btn btn-primary">Save</button>
+   <a id="register-btn" style="margin-left:10px" (click)="redirect()" >Cancel</a>
+   
+          </form>
+        </div>
+        </div>
