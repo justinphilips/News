@@ -1,0 +1,44 @@
+version: '2'
+services:
+  movie-mysql:
+   image: mysql:latest
+   expose:
+     - 3306
+   ports:
+     - '3306:3306'
+   container_name: mysql-docker-movie
+   network_mode: host
+   environment:
+     MYSQL_ROOT_PASSWORD: root
+     MYSQL_DATABASE: newsdb
+     MYSQL_USER: root
+     MYSQL_PASSWORD: root
+
+  spring:
+    image: spring-news-app
+    build: NewsApp/
+    restart: always
+    network_mode: host
+    container_name: spring-docker-news
+    depends_on:
+      - news-mysql
+    ports:
+      - 8080:8080
+
+  user-app:
+    image: spring-user-auth
+    build: NewsAuth/
+    restart: always
+    network_mode: host
+    container_name: spring-docker-user
+    depends_on:
+      - news-mysql
+    ports:
+      - 8082:8082
+
+  angular:
+    image: angular-news-app
+    network_mode: host
+    container_name: angular-docker
+    ports:
+      - 4200:4200
