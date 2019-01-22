@@ -19,9 +19,9 @@ api's :
         post:   localhost:8082/user/register
 
         {
-            "userId":"tamil",
-            "firstName":"tamil",
-            "lastName":"tamil",
+            "userId":"jesu",
+            "firstName":"jesu",
+            "lastName":"jesu",
             "password":"123"
         }
         
@@ -34,8 +34,8 @@ api's :
         post:   localhost:8082/user/login
 
         {
-            "userId":"tamil",
-            "password":"tamil"
+            "userId":"jesu",
+            "password":"jesu"
         }
 
 
